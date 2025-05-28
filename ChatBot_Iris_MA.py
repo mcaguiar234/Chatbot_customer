@@ -6,24 +6,24 @@ import os
 from langchain.llms import OpenAI
 from langchain_experimental.agents import create_pandas_dataframe_agent
 
-# 📌 Sidebar para ingresar la clave
+# Sidebar para ingresar la clave
 st.sidebar.title("🔑 Configuración")
 api_key = st.sidebar.text_input("Ingresa tu OpenAI API Key:", type="password")
 
-# ✅ Título principal
+# Título principal
 st.title("📊 Chatbot de Tabla de Datos")
 
-# 📁 Subida del archivo
+# Subida del archivo
 uploaded_file = st.file_uploader("Carga tu archivo CSV", type="csv")
 
-# 🧠 Función para validar si la pregunta es relevante para la tabla
+# Función para validar si la pregunta es relevante para la tabla
 def pregunta_relevante(pregunta, df):
     columnas = [col.lower() for col in df.columns]
     palabras_clave = ["promedio", "valor", "columna", "dato", "medida", "máximo", "mínimo", "frecuencia", "total", "cantidad", "producto"]
     palabras_validas = columnas + palabras_clave
     return any(palabra in pregunta.lower() for palabra in palabras_validas)
 
-# ✅ Solo continúa si hay clave ingresada
+# Solo continúa si hay clave ingresada
 if api_key:
     os.environ["OPENAI_API_KEY"] = api_key  # Establece variable de entorno
 
