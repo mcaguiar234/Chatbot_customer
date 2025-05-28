@@ -19,7 +19,8 @@ uploaded_file = st.file_uploader("Carga tu archivo CSV", type="csv")
 # Función para validar si la pregunta es relevante para la tabla
 def pregunta_relevante(pregunta, df):
     columnas = [col.lower() for col in df.columns]
-    palabras_clave = ["promedio", "valor", "columna", "dato", "medida", "máximo", "mínimo", "frecuencia", "total", "cantidad", "producto"]
+    palabras_clave = ["promedio", "valor", "columna", "dato", "medida", "máximo", "mínimo", "frecuencia", "total", 
+                      "cantidad", "especie", "ancho", "pétalo", "sépalo"]
     palabras_validas = columnas + palabras_clave
     return any(palabra in pregunta.lower() for palabra in palabras_validas)
 
